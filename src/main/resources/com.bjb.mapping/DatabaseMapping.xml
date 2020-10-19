@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjb.project.dao.DatabaseDao">
+
+    <insert id="insertDatabase">
+        insert into database(IP,port,dbName,title,userName,password) values (#{IP},#{port},#{dbName},#{title},#{userName},#{password})
+    </insert>
+
+    <update id="updateDatabase">
+        update database set IP=#{IP},port=#{port},dbName=#{dbName},title=#{title},userName=#{userName},password=#{password} where sort=#{sort}
+    </update>
+
+    <delete id="deleteDatabase">
+        update database set del_flag=1 where sort=#{sort}
+    </delete>
+
+    <select id="queryOneBySort" resultType="com.bjb.project.entity.Database">
+        select IP,port,dbName,title,userName,password from database where sort=#{sort}
+    </select>
+
+    <select id="queryAll" resultType="com.bjb.project.entity.Database">
+        select sort,IP,port,dbName,title,userName,password from database where del_flag=0
+    </select>
+</mapper>
